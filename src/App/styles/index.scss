@@ -1,0 +1,11 @@
+@import "@/App/styles/variables/global.scss";
+@import "@/App/styles/themes/dark.scss";
+@import "@/App/styles/themes/normal.scss";
+
+.content_page {
+  display: flex;
+}
+.page_wrapper {
+  flex-grow: 1;
+  padding: 20px;
+}
