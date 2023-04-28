@@ -1,7 +1,7 @@
 <template>
   <nav :class="clonFunc('nav_bar', {}, [nameClass])">
-    <AppLink name-link="Home" name-path="MainPage" name-class="secondary"/> |
-    <AppLink name-link="About" name-path="AboutPage" name-class="secondary"/>
+    <AppLink name-link="main" name-path="MainPage" name-class="secondary"/> |
+    <AppLink name-link="about" name-path="AboutPage" name-class="secondary"/>
   </nav>
 </template>
 

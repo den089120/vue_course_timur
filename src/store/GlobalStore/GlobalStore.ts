@@ -1,16 +1,22 @@
 import { defineStore } from 'pinia'
 import { TypeGlobalState } from './TypeGlobalState'
+import { i18n } from '@/shared/lib/i18n'
 
 export const useGlobalStore = defineStore({
   id: 'globalStore',
   state: (): TypeGlobalState => {
     return {
       isDark: false,
-      isCollapsed: false
+      isCollapsed: false,
+      langApp: 'ru'
     }
   },
   getters: {},
   actions: {
+    changeLang (lang: string) {
+      this.langApp = lang
+      i18n.setLocale(this.langApp)
+    },
     changeTheme (): void {
       this.isDark = !this.isDark
       this.setThemeLocal()

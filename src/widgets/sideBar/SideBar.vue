@@ -1,7 +1,7 @@
 <template>
   <div :class="clonFunc('side_bar', {collapsed: isCollapsed}, [])">
-    SideBar
     <button @click="changeSideView">toggle</button>
+    <LangSwitcher/>
     <div class="switchers">
       <ThemeSwitcher @click="changeTheme"/>
     </div>
@@ -14,9 +14,10 @@ import { mapState, mapActions } from 'pinia'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
 import { classNames, Mods } from '@/shared/lib/classNames/classNames'
 import ThemeSwitcher from '@/widgets/themeSwitcher/ThemeSwitcher.vue'
+import LangSwitcher from '@/widgets/langSwitcher/LangSwitcher.vue'
 export default defineComponent({
   name: 'SideBar',
-  components: { ThemeSwitcher },
+  components: { LangSwitcher, ThemeSwitcher },
   data () {
     return {}
   },

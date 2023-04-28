@@ -1,6 +1,6 @@
 <template>
   <RouterLink :to="{ name: namePath }" :class="clonFunc('link_router', mods, [nameClass])">
-    {{ nameLink }}
+    {{ $t(nameLink) }}
   </RouterLink>
 </template>
 
