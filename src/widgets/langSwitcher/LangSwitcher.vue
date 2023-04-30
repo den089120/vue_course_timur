@@ -2,7 +2,7 @@
   <div :class="clonFunc('lang_switcher', {}, [''])">
     <div>язык</div>
     <select v-model="selectLang">
-      <option selected value="ru">Русский</option>
+      <option value="ru" selected>Русский</option>
       <option value="en">English</option>
       <option value="zh">中国人</option>
     </select>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import AboutPage from '@/pages/AboutPage/AboutPage.vue'
 import MainPage from '@/pages/MainPage/MainPage.vue'
+import NotFoundPage from '@/pages/notFoundPage/NotFoundPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'AboutPage',
     component: AboutPage
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFoundPage',
+    component: NotFoundPage
   }
 ]
 

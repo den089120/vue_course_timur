@@ -3,7 +3,9 @@
     <NavBar/>
     <div class="content_page">
       <SideBar/>
-      <router-view class="page_wrapper"/>
+        <VErrorBoundary :fall-back="myFallBack">
+          <router-view class="page_wrapper"/>
+        </VErrorBoundary>
     </div>
   </div>
 </template>
@@ -14,11 +16,15 @@ import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
 import { classNames, Mods } from '@/shared/lib/classNames/classNames'
 import NavBar from '@/widgets/navBar/NavBar.vue'
 import SideBar from '@/widgets/sideBar/SideBar.vue'
+import MyErrorPage from '@/pages/myErrorPage/MyErrorPage.vue'
+import VErrorBoundary from 'vue-error-boundary'
 export default defineComponent({
   name: 'App',
-  components: { SideBar, NavBar },
+  components: { SideBar, NavBar, VErrorBoundary },
   data () {
-    return {}
+    return {
+      myFallBack: MyErrorPage
+    }
   },
   mounted () {
     this.getThemeLocal()
