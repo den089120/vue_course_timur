@@ -1,5 +1,5 @@
 <template>
-  <MyButton name-class="clear" :class="clonFunc('btn_switcher', mods, [nameClass])">
+  <MyButton :name-class="['clear']" :class="clonFunc('btn_switcher', mods, [nameClass])">
     <img v-if="isDark" src="icons/theme-dark_1.svg" alt=""/>
     <img v-else src="icons/theme-light_1.svg" alt=""/>
   </MyButton>

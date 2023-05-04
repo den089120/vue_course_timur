@@ -26,10 +26,10 @@ export default defineComponent({
       myFallBack: MyErrorPage
     }
   },
-  mounted () {
-    this.getThemeLocal()
-    this.getCollapseLocal()
-  },
+  // created () {
+  //   this.getThemeLocal()
+  //   this.getCollapseLocal()
+  // },
   computed: {
     ...mapState(useGlobalStore, ['isDark'])
   },

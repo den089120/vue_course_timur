@@ -1,7 +1,7 @@
 <template>
   <nav :class="clonFunc('nav_bar', {}, [nameClass])">
-    <AppLink name-link="main" name-path="MainPage" name-class="secondary"/> |
-    <AppLink name-link="about" name-path="AboutPage" name-class="secondary"/>
+    <AppLink name-link="main" :name-path="appPath.Main" name-class="secondary"/> |
+    <AppLink name-link="about" :name-path="appPath.About" name-class="secondary"/>
   </nav>
 </template>
 
@@ -9,11 +9,17 @@
 import { defineComponent } from 'vue'
 import { classNames, Mods } from '@/shared/lib/classNames/classNames'
 import AppLink from '@/shared/ui/AppLink/AppLink.vue'
+import { RoutesPath } from '@/router/RoutesPath'
 export default defineComponent({
   name: 'NavBar',
   components: { AppLink },
   props: {
-    nameClass: String
+    nameClass: [String, Array]
+  },
+  computed: {
+    appPath ():Record<string, string> {
+      return RoutesPath
+    }
   },
   methods: {
     clonFunc (cls: string, mods: Mods, additional: Array<string>): string {

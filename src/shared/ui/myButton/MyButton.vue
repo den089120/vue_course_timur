@@ -1,6 +1,6 @@
 <template>
-  <button  :class="clonFunc('btn_my', mods, [nameClass])" @click="$emit('clickButton')">
-    <slot></slot>
+  <button  :class="clonFunc('btn_my', mods, [...nameClass])" @click="$emit('clickButton')">
+    <slot>TEXT</slot>
   </button>
 </template>
 
@@ -27,9 +27,10 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .btn_my {
   cursor: pointer;
+  padding: 6px 15px;
 }
 .clear {
   padding: 0;
@@ -37,5 +38,44 @@ export default defineComponent({
   border: none;
   background: none;
   outline: none;
+}
+.outline_btn {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background: none;
+}
+.background_btn {
+  background: var(--bg-color);
+  color: var(--primary-color);
+  border: none;
+}
+.background_btn_inverted {
+  background: var(--inverted-bg-color);
+  color: var(--inverted-primary-color);
+  border: none;
+}
+.size-m {
+  font: var(--font-m);
+}
+.size-l {
+  font: var(--font-l);
+}
+.size-xl {
+  font: var(--font-xl);
+}
+.square_btn {
+  //padding: 0;
+  .size-m {
+    width: var(--font-size-m);
+    height: var(--font-size-m);
+  }
+  .size-l {
+    width: var(--font-line-l);
+    height: var(--font-line-l);
+  }
+  .size-xl {
+    width: var(--font-size-xl);
+    height: var(--font-size-xl);
+  }
 }
 </style>

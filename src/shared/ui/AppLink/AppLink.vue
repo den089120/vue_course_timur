@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="{ name: namePath }" :class="clonFunc('link_router', mods, [nameClass])">
+  <RouterLink :to="namePath" :class="clonFunc('link_router', mods, [...nameClass])">
     {{ $t(nameLink) }}
   </RouterLink>
 </template>

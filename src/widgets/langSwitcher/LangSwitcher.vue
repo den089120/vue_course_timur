@@ -1,9 +1,8 @@
 <template>
   <div :class="clonFunc('lang_switcher', {}, [''])">
-    <div>язык</div>
     <select v-model="selectLang">
-      <option value="ru" selected>Русский</option>
-      <option value="en">English</option>
+      <option value="ru" selected>{{ isCollapsed ? 'Ру' : 'Русский' }}</option>
+      <option value="en">{{ isCollapsed ? 'En' : 'English' }}</option>
       <option value="zh">中国人</option>
     </select>
   </div>
@@ -11,20 +10,23 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { mapActions } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
 import { classNames, Mods } from '@/shared/lib/classNames/classNames'
 export default defineComponent({
   name: 'LangSwitcher',
   data () {
     return {
-      selectLang: ''
+      selectLang: 'ru'
     }
   },
   watch: {
     selectLang (newLang) {
       this.changeLang(newLang)
     }
+  },
+  computed: {
+    ...mapState(useGlobalStore, ['isCollapsed'])
   },
   methods: {
     ...mapActions(useGlobalStore, ['changeLang']),
