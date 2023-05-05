@@ -8,12 +8,19 @@ export const useGlobalStore = defineStore({
     return {
       isDark: false,
       isCollapsed: false,
-      langApp: 'ru'
+      langApp: 'ru',
+      isModal: false
     }
   },
   getters: {},
   actions: {
-    changeLang (lang: string) {
+    closeModal (): void {
+      this.isModal = false
+    },
+    openModal ():void {
+      this.isModal = true
+    },
+    changeLang (lang: string): void {
       this.langApp = lang
       i18n.setLocale(this.langApp)
     },
@@ -21,15 +28,15 @@ export const useGlobalStore = defineStore({
       this.isDark = !this.isDark
       this.setThemeLocal()
     },
-    changeSideView () {
+    changeSideView (): void {
       this.isCollapsed = !this.isCollapsed
       this.setCollapseLocal()
     },
-    setThemeLocal () {
+    setThemeLocal (): void {
       const str = process.env.VUE_APP_NAME_THEME
       if (str) localStorage.setItem(str, JSON.stringify(this.isDark))
     },
-    getThemeLocal () {
+    getThemeLocal (): void {
       const str = process.env.VUE_APP_NAME_THEME
       if (str) {
         const bool = localStorage.getItem(str)
@@ -37,11 +44,11 @@ export const useGlobalStore = defineStore({
         if (bool === 'false') this.isDark = JSON.parse(bool)
       }
     },
-    setCollapseLocal () {
+    setCollapseLocal (): void {
       const str = process.env.VUE_APP_NAME_COLLAPSE
       if (str) localStorage.setItem(str, JSON.stringify(this.isCollapsed))
     },
-    getCollapseLocal () {
+    getCollapseLocal (): void {
       const str = process.env.VUE_APP_NAME_COLLAPSE
       if (str) {
         const bool = localStorage.getItem(str)

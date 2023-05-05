@@ -1,5 +1,5 @@
 <template>
-  <MyButton :name-class="['clear']" :class="clonFunc('btn_switcher', mods, [nameClass])">
+  <MyButton :name-class="['clear']" :class="$ClassNames('btn_switcher', mods, [nameClass])">
     <img v-if="isDark" src="icons/theme-dark_1.svg" alt=""/>
     <img v-else src="icons/theme-light_1.svg" alt=""/>
   </MyButton>
@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { mapState } from 'pinia'
-import { classNames, Mods } from '@/shared/lib/classNames/classNames'
+import { Mods } from '@/shared/lib/plugins/ClassNames'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
 import MyButton from '@/shared/ui/myButton/MyButton.vue'
 
@@ -27,11 +27,6 @@ export default defineComponent({
   },
   computed: {
     ...mapState(useGlobalStore, ['isDark'])
-  },
-  methods: {
-    clonFunc (cls: string, mods: Mods, additional: Array<string>): string {
-      return classNames(cls, mods, additional)
-    }
   }
 })
 </script>

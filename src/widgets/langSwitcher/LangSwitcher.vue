@@ -1,5 +1,5 @@
 <template>
-  <div :class="clonFunc('lang_switcher', {}, [''])">
+  <div :class="$ClassNames('lang_switcher', {}, [''])">
     <select v-model="selectLang">
       <option value="ru" selected>{{ isCollapsed ? 'Ру' : 'Русский' }}</option>
       <option value="en">{{ isCollapsed ? 'En' : 'English' }}</option>
@@ -12,7 +12,6 @@
 import { defineComponent } from 'vue'
 import { mapState, mapActions } from 'pinia'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
-import { classNames, Mods } from '@/shared/lib/classNames/classNames'
 export default defineComponent({
   name: 'LangSwitcher',
   data () {
@@ -29,10 +28,7 @@ export default defineComponent({
     ...mapState(useGlobalStore, ['isCollapsed'])
   },
   methods: {
-    ...mapActions(useGlobalStore, ['changeLang']),
-    clonFunc (cls: string, mods: Mods, additional: Array<string>): string {
-      return classNames(cls, mods, additional)
-    }
+    ...mapActions(useGlobalStore, ['changeLang'])
   }
 })
 </script>
@@ -43,9 +39,11 @@ export default defineComponent({
   select {
     outline: none;
     border: none;
+    appearance: none;
     background: var(--inverted-bg-color);
     margin-left: 10px;
     color: var(--primary-color);
+    cursor: pointer;
   }
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <button  :class="clonFunc('btn_my', mods, [...nameClass])" @click="$emit('clickButton')">
+  <button  :class="$ClassNames('btn_my', mods, [...nameClass])" @click="$emit('clickButton')">
     <slot>TEXT</slot>
   </button>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { classNames, Mods } from '@/shared/lib/classNames/classNames'
+import { Mods } from '@/shared/lib/plugins/ClassNames'
 export default defineComponent({
   name: 'MyButton',
   emits: ['clickButton'],
@@ -18,11 +18,6 @@ export default defineComponent({
   },
   data () {
     return {}
-  },
-  methods: {
-    clonFunc (cls: string, mods: Mods, additional: Array<string>): string {
-      return classNames(cls, mods, additional)
-    }
   }
 })
 </script>
@@ -38,6 +33,14 @@ export default defineComponent({
   border: none;
   background: none;
   outline: none;
+}
+.clear_inverted {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--inverted-primary-color);
 }
 .outline_btn {
   border: 1px solid var(--primary-color);

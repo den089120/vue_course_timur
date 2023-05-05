@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "db:serve": "json-server --watch db.json --port=8000",
+    "db:dev:server": "node ./json_server/index.js",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
@@ -53,6 +55,8 @@
     "eslint-plugin-storybook": "^0.6.11",
     "eslint-plugin-vue": "^7.20.0",
     "jest": "^27.0.5",
+    "json-server": "^0.17.3",
+    "jsonwebtoken": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.32.7",
