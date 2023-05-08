@@ -6,5 +6,6 @@ export const en = {
   About_page: 'About page',
   NotFoundPage: 'Not Found Page',
   text_MyErrorPage: 'An unexpected error occurred, please reload the page',
-  text_btn_reload: 'Reload page'
+  text_btn_reload: 'Reload page',
+  logIn: 'logIn'
 }

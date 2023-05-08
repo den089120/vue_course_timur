@@ -7,7 +7,6 @@
           <router-view class="page_wrapper"/>
         </VErrorBoundary>
     </div>
-    <ModalApp/>
   </div>
 </template>
 <script lang="ts">
@@ -18,10 +17,9 @@ import NavBar from '@/widgets/navBar/NavBar.vue'
 import SideBar from '@/widgets/sideBar/SideBar.vue'
 import MyErrorPage from '@/pages/myErrorPage/MyErrorPage.vue'
 import VErrorBoundary from 'vue-error-boundary'
-import ModalApp from '@/shared/ui/modalApp/ModalApp.vue'
 export default defineComponent({
   name: 'App',
-  components: { ModalApp, SideBar, NavBar, VErrorBoundary },
+  components: { SideBar, NavBar, VErrorBoundary },
   data () {
     return {
       myFallBack: MyErrorPage

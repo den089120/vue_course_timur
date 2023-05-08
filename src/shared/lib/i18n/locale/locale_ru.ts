@@ -6,5 +6,6 @@ export const ru = {
   About_page: 'О нас',
   NotFoundPage: 'Страница не найдена',
   text_MyErrorPage: 'Произошла непредвиденная ошибка, перезагрузите страницу',
-  text_btn_reload: 'Перезагрузить страницу'
+  text_btn_reload: 'Перезагрузить страницу',
+  logIn: 'Войти'
 }

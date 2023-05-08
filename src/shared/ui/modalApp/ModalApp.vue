@@ -1,13 +1,8 @@
 <template>
 <!--  <Teleport to=".app">-->
-    <div :class="$ClassNames('modal_container', { modal_open: isModal }, [''])" @click.self="closeModal">
-      <div :class="$ClassNames('modal_body', { open_body: isModal, close_body: !isModal }, [''])">
+    <div :class="$ClassNames('modal_container', { modal_open: viewModal }, [''])" @click.self="$emit('closeModal')">
+      <div :class="$ClassNames('modal_body', { open_body: viewModal, close_body: !viewModal }, [''])">
         <slot>
-          Lorem ipsum dolor sit amet,
-          consectetur adipisicing elit. Aperiam asperiores
-          at deserunt doloribus enim eos et explicabo fugiat
-          ipsum nesciunt, perferendis placeat possimus
-          quibusdam quos tempore ullam, voluptate! Beatae, id!
         </slot>
       </div>
     </div>
@@ -16,18 +11,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { mapState, mapActions } from 'pinia'
-import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
 export default defineComponent({
   name: 'ModalApp',
+  props: {
+    viewModal: {
+      type: Boolean
+    }
+  },
+  emits: ['closeModal'],
   data () {
     return {}
-  },
-  computed: {
-    ...mapState(useGlobalStore, ['isModal'])
-  },
-  methods: {
-    ...mapActions(useGlobalStore, ['closeModal'])
   }
 })
 </script>

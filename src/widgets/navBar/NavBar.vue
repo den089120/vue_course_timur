@@ -1,22 +1,33 @@
 <template>
   <nav :class="$ClassNames('nav_bar', {}, [nameClass])">
-    <MyButton @click-button="openModal" :name-class="['clear_inverted']" :mods="{}"  >Войти</MyButton>
+    <MyButton @click="openModal" :name-class="['clear_inverted']" :mods="{}">{{$t('logIn')}}</MyButton>
+    <LoginModal :login-modal-view="isOpen" @close-login="closeModal"/>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import MyButton from '@/shared/ui/myButton/MyButton.vue'
-import { mapActions } from 'pinia'
-import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
+import { LoginModal } from '@/features/authByUsername/'
+
 export default defineComponent({
   name: 'NavBar',
-  components: { MyButton },
+  components: { LoginModal, MyButton },
   props: {
     nameClass: [String, Array]
   },
+  data () {
+    return {
+      isOpen: false
+    }
+  },
   methods: {
-    ...mapActions(useGlobalStore, ['openModal'])
+    openModal () {
+      this.isOpen = true
+    },
+    closeModal () {
+      this.isOpen = false
+    }
   }
 })
 </script>
