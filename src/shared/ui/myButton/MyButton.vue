@@ -1,5 +1,5 @@
 <template>
-  <button  :class="$ClassNames('btn_my', mods, [...nameClass])" @click="$emit('clickButton')">
+  <button :class="$ClassNames('btn_my', mods, [...nameClass])" :disabled="disabledIs" @click="$emit('clickButton')">
     <slot>TEXT</slot>
   </button>
 </template>
@@ -14,7 +14,8 @@ export default defineComponent({
     nameClass: [String, Array],
     mods: {
       type: Object as PropType<Mods>
-    }
+    },
+    disabledIs: Boolean
   },
   data () {
     return {}
@@ -80,5 +81,8 @@ export default defineComponent({
     width: var(--font-size-xl);
     height: var(--font-size-xl);
   }
+}
+.btn_disabled {
+  opacity: 0.6;
 }
 </style>

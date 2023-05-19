@@ -15,6 +15,13 @@
           </IconTemplate>
         </AppLink>
       </div>
+      <div v-if="isAuth">
+        <AppLink class="link_container" name-link="profile" :name-path="appPath.Profile" :name-class="[]" :class-span="['invert_primary',{'short': isCollapsed}]">
+          <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
+            <IconProfile/>
+          </IconTemplate>
+        </AppLink>
+      </div>
     </div>
     <div class="switchers">
       <ThemeSwitcher @click="changeTheme"/>
@@ -37,10 +44,12 @@ import { ColorIcons } from '@/shared/ui/iconComponents/ColorForIcons'
 import IconHome from '@/shared/ui/iconComponents/icons/IconHome.vue'
 import IconAbout from '@/shared/ui/iconComponents/icons/IconAbout.vue'
 import IconTemplate from '@/shared/ui/iconComponents/IconTemplate.vue'
+import IconProfile from '@/shared/ui/iconComponents/icons/IconProfile.vue'
+import { useUserStore } from '@/entities/User'
 
 export default defineComponent({
   name: 'SideBar',
-  components: { IconTemplate, IconAbout, IconHome, LangSwitcher, ThemeSwitcher, MyButton, AppLink },
+  components: { IconProfile, IconTemplate, IconAbout, IconHome, LangSwitcher, ThemeSwitcher, MyButton, AppLink },
   data () {
     return {}
   },
@@ -50,6 +59,7 @@ export default defineComponent({
   },
   computed: {
     ...mapState(useGlobalStore, ['isCollapsed', 'isDark']),
+    ...mapState(useUserStore, ['isAuth']),
     MyLabel (): string {
       return this.isCollapsed ? '>' : '<'
     },

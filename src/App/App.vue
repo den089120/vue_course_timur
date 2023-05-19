@@ -17,6 +17,7 @@ import NavBar from '@/widgets/navBar/NavBar.vue'
 import SideBar from '@/widgets/sideBar/SideBar.vue'
 import MyErrorPage from '@/pages/myErrorPage/MyErrorPage.vue'
 import VErrorBoundary from 'vue-error-boundary'
+import { UserStore } from '@/store'
 export default defineComponent({
   name: 'App',
   components: { SideBar, NavBar, VErrorBoundary },
@@ -24,6 +25,9 @@ export default defineComponent({
     return {
       myFallBack: MyErrorPage
     }
+  },
+  created () {
+    UserStore.initUser()
   },
   computed: {
     ...mapState(useGlobalStore, ['isDark'])

@@ -11,5 +11,13 @@
   "coments": [
     {"id": 1, "body": "some comment", "postId":  1}
   ],
-  "profile": {"name": "typicode"}
+  "profile": {
+    "firstname": "Danil",
+    "lastname": "Ann",
+    "age": "43",
+    "currency": "RUB",
+    "country": "Russia",
+    "username": "admin",
+    "avatar": ""
+  }
 }

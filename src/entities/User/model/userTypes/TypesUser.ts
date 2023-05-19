@@ -1,9 +1,10 @@
 
 export interface TypeUser {
-  id: string;
+  id: number;
   username: string;
 }
 
 export interface TypeUserStore {
   user: TypeUser;
+  isAuth: boolean;
 }
