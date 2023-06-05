@@ -48,6 +48,11 @@ export default defineComponent({
   color: var(--primary-color);
   background: none;
 }
+.outline_btn_danger {
+  border: 1px solid var(--red-light);
+  color: var(--red-light);
+  background: none;
+}
 .background_btn {
   background: var(--bg-color);
   color: var(--primary-color);

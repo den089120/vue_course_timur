@@ -15,5 +15,17 @@ export const en = {
   error: 'Error',
   You_entered_the_wrong_username_or_password: 'You entered the wrong username or password',
   logOut: 'Logout',
-  authorization_form: 'Authorization form'
+  authorization_form: 'Authorization form',
+  edit_profile: 'Edit profile',
+  First_name: 'First name',
+  Last_name: 'Last name',
+  Age: 'Age',
+  Currency: 'Currency',
+  Country: 'Country',
+  username: 'Username',
+  avatar: 'Avatar',
+  Profile: 'Profile',
+  cancel: 'Cancel',
+  save: 'Save',
+  Error_field: 'Error, field must not be empty'
 }

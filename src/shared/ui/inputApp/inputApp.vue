@@ -6,6 +6,7 @@
       @input="$emit('update:textInput', $event.target.value)"
       :class="$ClassNames('input_app', mods, [''])"
       required="required"
+      :readonly="readonlyIs"
     >
     <span v-if="placeHolder">{{ placeHolder }}</span>
     <div></div>
@@ -29,7 +30,11 @@ export default defineComponent({
       type: Object as PropType<Mods>
     },
     nameClass: [String, Array],
-    placeHolder: String
+    placeHolder: String,
+    readonlyIs: {
+      type: Boolean,
+      default: false
+    }
   },
   emits: ['update:textInput'],
   data () {
@@ -61,6 +66,7 @@ export default defineComponent({
     font-size: 1rem;
   }
   input:valid ~ span,
+  input:read-only ~ span,
   input:focus ~ span {
     font-size: 0.75rem;
     transform: translateY(-30px);
@@ -75,12 +81,10 @@ export default defineComponent({
     transition: 0.5s;
   }
   input:valid ~ div,
+  input:read-only ~ div,
   input:focus ~ div {
     height: 35px;;
   }
-}
-.login_input::before {
-
 }
 
 .input_app {

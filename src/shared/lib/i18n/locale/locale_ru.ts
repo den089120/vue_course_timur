@@ -15,5 +15,17 @@ export const ru = {
   error: 'Ошибка',
   You_entered_the_wrong_username_or_password: 'Вы ввели неправильный логин или пароль',
   logOut: 'Выйти',
-  authorization_form: 'Форма авторизации'
+  authorization_form: 'Форма авторизации',
+  edit_profile: 'Редактировать профиль',
+  First_name: 'Имя',
+  Last_name: 'Фамилия',
+  Age: 'Возраст',
+  Currency: 'Валюта',
+  Country: 'Страна',
+  username: 'Логин',
+  avatar: 'Аватар',
+  Profile: 'Профиль',
+  cancel: 'Отмена',
+  save: 'Сохранить',
+  Error_field: 'Ошибка, поле не должно быть пустым'
 }

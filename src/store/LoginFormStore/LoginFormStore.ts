@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { TypeLoginFormStore } from './TypeLoginForm'
-// import axios from 'axios'
 import { apiAxios } from '@/shared/api/api'
 import { UserStore } from '@/store'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
@@ -9,8 +8,6 @@ export const useLoginFormStore = defineStore({
   id: 'LoginFormStore',
   state: (): TypeLoginFormStore => {
     return {
-      // userName: '',
-      // password: '',
       isLoading: false,
       errorText: '',
       isLoginForm: false
@@ -18,10 +15,6 @@ export const useLoginFormStore = defineStore({
   },
   getters: {},
   actions: {
-    // setLoginForm (name: string, password: string): void {
-    //   this.userName = name
-    //   this.password = password
-    // },
     openLoginForm () {
       this.isLoginForm = true
     },

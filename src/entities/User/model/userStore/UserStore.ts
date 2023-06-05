@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { TypeUserStore } from '../userTypes/TypesUser'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
+import router from '@/router'
 
 export const useUserStore = defineStore({
   id: 'UserStore',
@@ -29,11 +30,12 @@ export const useUserStore = defineStore({
         this.isAuth = true
       }
     },
-    removeUser () {
+    async removeUser () {
       this.user.id = 0
       this.user.username = ''
       this.isAuth = false
       localStorage.removeItem(USER_LOCALESTORAGE_KEY)
+      await router.push('/')
     }
   }
 })

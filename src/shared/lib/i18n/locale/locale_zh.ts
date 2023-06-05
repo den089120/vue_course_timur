@@ -15,5 +15,17 @@ export const zh = {
   error: '错误',
   You_entered_the_wrong_username_or_password: '您输入了错误的用户名或密码',
   logOut: '登出',
-  authorization_form: '授权书'
+  authorization_form: '授权书',
+  edit_profile: '编辑个人资料',
+  First_name: '名',
+  Last_name: '姓',
+  Age: '年龄',
+  Currency: '货币',
+  Country: '国家',
+  username: '用户名',
+  avatar: '化身',
+  Profile: '轮廓',
+  cancel: '取消',
+  save: '节省',
+  Error_field: '错误，字段不能为空'
 }

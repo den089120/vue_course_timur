@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
-import { ProfileType } from '../profileTypes/ProfileType'
+import { ProfileSchema, ProfileType } from '../profileTypes/ProfileType'
+import { apiAxios } from '@/shared/api/api'
 
 export const useProfileStore = defineStore({
   id: 'ProfileStore',
@@ -12,5 +13,44 @@ export const useProfileStore = defineStore({
     }
   },
   getters: {},
-  actions: {}
+  actions: {
+    removeReadonly () {
+      this.readonly = false
+    },
+    addReadonly () {
+      this.readonly = true
+    },
+    async getProfile (): Promise<void> {
+      this.isLoading = true
+      try {
+        const res = await apiAxios.get('/profile')
+        if (res) {
+          this.isLoading = false
+          this.data = res.data
+        } else {
+          this.isLoading = false
+          this.error = ''
+        }
+      } catch (e) {
+        this.isLoading = false
+        this.error = ''
+      }
+    },
+    async updateProfile (data: ProfileSchema): Promise<void> {
+      this.isLoading = true
+      try {
+        const res = await apiAxios.put('/profile', data)
+        if (res) {
+          this.isLoading = false
+          this.data = res.data
+        } else {
+          this.isLoading = false
+          this.error = ''
+        }
+      } catch (e) {
+        this.isLoading = false
+        this.error = ''
+      }
+    }
+  }
 })

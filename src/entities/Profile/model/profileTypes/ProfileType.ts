@@ -1,12 +1,12 @@
 
 export interface ProfileSchema {
-  firstname: string;
-  lastname: string;
-  age: string;
-  currency: string;
-  country: string;
-  username: string;
-  avatar: string;
+  firstname: string | undefined;
+  lastname: string | undefined;
+  age: string | undefined;
+  currency: string | undefined;
+  country: string | undefined;
+  username: string | undefined;
+  avatar: string | undefined;
 }
 
 export interface ProfileType {
