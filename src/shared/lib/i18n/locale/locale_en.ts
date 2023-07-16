@@ -27,5 +27,6 @@ export const en = {
   Profile: 'Profile',
   cancel: 'Cancel',
   save: 'Save',
-  Error_field: 'Error, field must not be empty'
+  Error_field: 'Error, field must not be empty',
+  articles: 'Articles'
 }

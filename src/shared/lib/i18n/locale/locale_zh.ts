@@ -27,5 +27,6 @@ export const zh = {
   Profile: '轮廓',
   cancel: '取消',
   save: '节省',
-  Error_field: '错误，字段不能为空'
+  Error_field: '错误，字段不能为空',
+  articles: '文章'
 }

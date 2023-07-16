@@ -5,56 +5,9 @@ import NotFoundPage from '@/pages/notFoundPage/NotFoundPage.vue'
 import { RoutesPath } from '@/router/RoutesPath'
 import ProfilePage from '@/pages/ProfilePage/ProfilePage.vue'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
-// import { RoutesList } from '@/router/RoutesList'
-
-// const arr = (): Array<RouteRecordRaw> => {
-//   const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
-//   if (isAuthenticated) {
-//     return [
-//       {
-//         path: RoutesPath.Main,
-//         name: 'MainPage',
-//         component: MainPage
-//       },
-//       {
-//         path: RoutesPath.About,
-//         name: 'AboutPage',
-//         component: AboutPage
-//       },
-//       {
-//         path: RoutesPath.Profile,
-//         name: 'ProfilePage',
-//         component: ProfilePage,
-//         meta: { requiresAuth: true }
-//       },
-//       {
-//         path: RoutesPath.NotFound,
-//         name: 'NotFoundPage',
-//         component: NotFoundPage
-//       }
-//     ]
-//   } else {
-//     return [
-//       {
-//         path: RoutesPath.Main,
-//         name: 'MainPage',
-//         component: MainPage
-//       },
-//       {
-//         path: RoutesPath.About,
-//         name: 'AboutPage',
-//         component: AboutPage
-//       },
-//       {
-//         path: RoutesPath.NotFound,
-//         name: 'NotFoundPage',
-//         component: NotFoundPage
-//       }
-//     ]
-//   }
-// }
-
-// const routes: Array<RouteRecordRaw> = RoutesList
+import { ProfileStore, ArticleStore } from '@/store'
+import ArticlesPage from '@/pages/ArticlesPage/ArticlesPage.vue'
+import ArticleDetailsPage from '@/pages/ArticleDetailsPage/ArticleDetailsPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -71,11 +24,31 @@ const routes: Array<RouteRecordRaw> = [
     path: RoutesPath.Profile,
     name: 'ProfilePage',
     component: ProfilePage,
-    beforeEnter: to => {
+    beforeEnter: async (to) => {
       const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
-      if (!isAuthenticated) return { path: RoutesPath.NotFound }
+      if (!isAuthenticated) return { path: RoutesPath.Main }
+      await ProfileStore.getProfile()
     }
-    // meta: { requiresAuth: true }
+  },
+  {
+    path: RoutesPath.Articles,
+    name: 'ArticlesPage',
+    component: ArticlesPage,
+    beforeEnter: async (to) => {
+      const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
+      if (!isAuthenticated) return { path: RoutesPath.Main }
+      // await ProfileStore.getProfile()
+    }
+  },
+  {
+    path: RoutesPath.Articles_details,
+    name: 'ArticleDetailsPage',
+    component: ArticleDetailsPage,
+    beforeEnter: async (to) => {
+      const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
+      if (!isAuthenticated) return { path: RoutesPath.Main }
+      await ArticleStore.getArticleDetails()
+    }
   },
   {
     path: RoutesPath.NotFound,
@@ -88,18 +61,5 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
-// router.beforeEach(async (to, from) => {
-//   const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
-//   if (to.meta.requiresAuth && !isAuthenticated) {
-//     return { path: RoutesPath.NotFound }
-//   } else {
-//     return to.path
-//   }
-// })
-
-// const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
-// if (isAuthenticated) router.addRoute({ path: RoutesPath.Profile, name: 'ProfilePage', component: ProfilePage, meta: { requiresAuth: true } })
-// else router.removeRoute('ProfilePage')
 
 export default router

@@ -1,73 +1,74 @@
 <template>
-  <div v-if="data" :class="$ClassNames('profile_container', {}, [])">
-    <AvatarApp v-if="avatar" :src="avatar" :alt="'user avatar'" :size="'150'" :name-class="['profile_avatar']" :mods="{}"/>
-    <div class="profile_header">
-      <TextApp :title="$t('Profile')" :mods="{}" :name-class="['']"/>
-      <MyButton v-if="readonly" :name-class="['outline_btn', 'profile_edit_btn']" :mods="{}" @click="removeReadonly">{{ $t('edit_profile') }}</MyButton>
-      <div v-else class="profile_edit_btn">
-        <MyButton :name-class="['outline_btn_danger', 'profile_cancel_btn']" :mods="{}" @click="cancelProfile">{{ $t('cancel') }}</MyButton>
-        <MyButton :name-class="['outline_btn']" :mods="{btn_disabled: isDisabled}" @click="upDate" :disabled-is="isDisabled" >{{ $t('save') }}</MyButton>
+    <div v-if="data" :class="$ClassNames('profile_container', {}, [])">
+      <AvatarApp v-if="avatar" :src="avatar" :alt="'user avatar'" :size="'150'" :name-class="['profile_avatar']" :mods="{}"/>
+      <div class="profile_header">
+        <TextApp :title="$t('Profile')" :mods="{}" :name-class="['']"/>
+        <MyButton v-if="readonly" :name-class="['outline_btn', 'profile_edit_btn']" :mods="{}" @click="removeReadonly">{{ $t('edit_profile') }}</MyButton>
+        <div v-else class="profile_edit_btn">
+          <MyButton :name-class="['outline_btn_danger', 'profile_cancel_btn']" :mods="{}" @click="cancelProfile">{{ $t('cancel') }}</MyButton>
+          <MyButton :name-class="['outline_btn']" :mods="{btn_disabled: isDisabled}" @click="upDate" :disabled-is="isDisabled" >{{ $t('save') }}</MyButton>
+        </div>
       </div>
+      <div class="profile_data">
+        <InputApp type-input="text"
+                  v-model:textInput="firstname"
+                  :mods="{input_read: readonly}"
+                  :readonly-is="readonly"
+                  :name-class="['login_input']"
+                  :place-holder="$t('First_name')"
+        />
+        <TextApp v-if="errorValid.isFirstname" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
+        <InputApp type-input="text"
+                  v-model:textInput="lastname"
+                  :mods="{input_read: readonly}"
+                  :readonly-is="readonly"
+                  :name-class="['login_input']"
+                  :place-holder="$t('Last_name')"
+        />
+        <TextApp v-if="errorValid.isLastname" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
+        <InputApp type-input="text"
+                  v-model:textInput="age"
+                  :mods="{input_read: readonly}"
+                  :readonly-is="readonly"
+                  :name-class="['login_input']"
+                  :place-holder="$t('Age')"
+        />
+        <TextApp v-if="errorValid.isAge" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
+        <SelectApp :readonly-is="readonly"
+                   :label="$t('Currency')"
+                   :name-class="['']"
+                   :mods="{}"
+                   :options="currencyList"
+                   :selected-item="currency"
+                   @select-value="changeCurrency"
+        />
+        <SelectApp :readonly-is="readonly"
+                   :selected-item="country"
+                   :options="countryList"
+                   :mods="{}"
+                   :name-class="['']"
+                   :label="$t('Country')"
+                   @select-value="changeCountry"
+        />
+        <InputApp type-input="text"
+                  v-model:textInput="username"
+                  :mods="{input_read: readonly}"
+                  :readonly-is="readonly"
+                  :name-class="['login_input']"
+                  :place-holder="$t('username')"
+        />
+        <TextApp v-if="errorValid.isUsername" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
+        <InputApp type-input="text"
+                  v-model:textInput="avatar"
+                  :mods="{input_read: readonly}"
+                  :readonly-is="readonly"
+                  :name-class="['login_input']"
+                  :place-holder="$t('avatar')"
+        />
+        <TextApp v-if="errorValid.isAvatar" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
+      </div>
+      <CSSLoader v-if="isLoading"/>
     </div>
-    <div class="profile_data">
-      <InputApp type-input="text"
-                v-model:textInput="firstname"
-                :mods="{input_read: readonly}"
-                :readonly-is="readonly"
-                :name-class="['login_input']"
-                :place-holder="$t('First_name')"
-      />
-      <TextApp v-if="errorValid.isFirstname" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
-      <InputApp type-input="text"
-                v-model:textInput="lastname"
-                :mods="{input_read: readonly}"
-                :readonly-is="readonly"
-                :name-class="['login_input']"
-                :place-holder="$t('Last_name')"
-      />
-      <TextApp v-if="errorValid.isLastname" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
-      <InputApp type-input="text"
-                v-model:textInput="age"
-                :mods="{input_read: readonly}"
-                :readonly-is="readonly"
-                :name-class="['login_input']"
-                :place-holder="$t('Age')"
-      />
-      <TextApp v-if="errorValid.isAge" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
-      <SelectApp :readonly-is="readonly"
-                 :label="$t('Currency')"
-                 :name-class="['']"
-                 :mods="{}"
-                 :options="currencyList"
-                 :selected-item="currency"
-                 @select-value="changeCurrency"
-      />
-      <SelectApp :readonly-is="readonly"
-                 :selected-item="country"
-                 :options="countryList"
-                 :mods="{}"
-                 :name-class="['']"
-                 :label="$t('Country')"
-                 @select-value="changeCountry"
-      />
-      <InputApp type-input="text"
-                v-model:textInput="username"
-                :mods="{input_read: readonly}"
-                :readonly-is="readonly"
-                :name-class="['login_input']"
-                :place-holder="$t('username')"
-      />
-      <TextApp v-if="errorValid.isUsername" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
-      <InputApp type-input="text"
-                v-model:textInput="avatar"
-                :mods="{input_read: readonly}"
-                :readonly-is="readonly"
-                :name-class="['login_input']"
-                :place-holder="$t('avatar')"
-      />
-      <TextApp v-if="errorValid.isAvatar" :name-class="['error text']" :mods="{}" :text="$t('Error_field')" />
-    </div>
-  </div>
 </template>
 
 <script lang="ts">
@@ -83,10 +84,11 @@ import SelectApp from '@/shared/ui/selectApp/SelectApp.vue'
 import { SelectOptionType } from '@/shared/ui/selectApp/selectOptionType'
 import { CurrencyListOption } from '@/entities/Currency'
 import { CountryListOption } from '@/entities/Country'
+import CSSLoader from '@/shared/ui/CSSloader/CSSLoader.vue'
 
 export default defineComponent({
   name: 'ProfilePage',
-  components: { SelectApp, AvatarApp, InputApp, TextApp, MyButton },
+  components: { CSSLoader, SelectApp, AvatarApp, InputApp, TextApp, MyButton },
   data () {
     return {
       firstname: ProfileStore.data?.firstname,
@@ -107,10 +109,16 @@ export default defineComponent({
     }
   },
   created () {
-    this.getProfile()
+    this.$watch(
+      () => this.$route.params,
+      () => {
+        this.getProfile()
+      },
+      { immediate: true }
+    )
   },
   computed: {
-    ...mapState(useProfileStore, ['data', 'readonly']),
+    ...mapState(useProfileStore, ['data', 'readonly', 'isLoading']),
     currencyList (): Array<SelectOptionType> {
       return CurrencyListOption()
     },

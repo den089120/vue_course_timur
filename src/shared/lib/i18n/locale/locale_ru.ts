@@ -27,5 +27,6 @@ export const ru = {
   Profile: 'Профиль',
   cancel: 'Отмена',
   save: 'Сохранить',
-  Error_field: 'Ошибка, поле не должно быть пустым'
+  Error_field: 'Ошибка, поле не должно быть пустым',
+  articles: 'Статьи'
 }

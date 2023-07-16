@@ -27,6 +27,9 @@ export default defineComponent({
 .btn_my {
   cursor: pointer;
   padding: 6px 15px;
+  &:hover {
+    opacity: 0.7;
+  }
 }
 .clear {
   padding: 0;

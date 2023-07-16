@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { TypeLoginFormStore } from './TypeLoginForm'
 import { apiAxios } from '@/shared/api/api'
-import { UserStore } from '@/store'
+import { UserStore, ProfileStore } from '@/store'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
 
 export const useLoginFormStore = defineStore({
@@ -39,6 +39,8 @@ export const useLoginFormStore = defineStore({
         UserStore.setUser(dat.id, dat.username)
         this.errorText = ''
         this.closeLoginForm()
+        window.location.reload()
+        await ProfileStore.getProfile()
       } catch (e) {
         this.isLoading = false
         this.errorText = 'You_entered_the_wrong_username_or_password'

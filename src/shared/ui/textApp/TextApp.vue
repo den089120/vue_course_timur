@@ -31,18 +31,26 @@ export default defineComponent({
 
 <style scoped lang="scss">
 .text_container {
-  margin-bottom: 10px;
   display: flex;
-  align-items: end;
+  flex-direction: column;
+  //align-items: end;
 }
 .title {
   font: var(--font-l);
   color: var(--primary-color);
+  margin-bottom: 10px;
 }
 .text {
-  margin-left: 15px;
   font: var(--font-m);
   color: var(--secondary-color);
+}
+.text_center {
+  .title {
+    text-align: center;
+  }
+  .text {
+    text-align: center;
+  }
 }
 .error {
   .title {

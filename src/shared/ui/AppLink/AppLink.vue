@@ -1,5 +1,5 @@
 <template>
-  <RouterLink :to="namePath" :class="$ClassNames('', mods, [...nameClass])">
+  <RouterLink :to="namePath" :class="$ClassNames('app_link', mods, [...nameClass])">
     <slot></slot>
     <span :class="['link_router', ...classSpan]">{{ $t(nameLink) }}</span>
   </RouterLink>
@@ -30,6 +30,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+.app_link {
+  &:hover{
+    opacity: 0.8;
+  }
+}
 .link_router {
   margin-left: 10px;
   color: var(--primary-color);

@@ -2,23 +2,58 @@
   <div :class="$ClassNames('side_bar', {collapsed: isCollapsed}, [])">
     <div :class="$ClassNames('items_container', {}, [])">
       <div >
-        <AppLink class="link_container" name-link="main" :name-path="appPath.Main" :name-class="[]" :class-span="['invert_primary',{'short': isCollapsed}]">
+        <AppLink class="link_container"
+                 name-link="main"
+                 :name-path="appPath.Main"
+                 :name-class="[]"
+                 :class-span="['invert_primary',{'short': isCollapsed}]">
           <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
             <IconHome/>
           </IconTemplate>
         </AppLink>
       </div>
       <div>
-        <AppLink class="link_container" name-link="about" :name-path="appPath.About" :name-class="[]" :class-span="['invert_primary',{'short': isCollapsed}]">
+        <AppLink class="link_container"
+                 name-link="about"
+                 :name-path="appPath.About"
+                 :name-class="[]"
+                 :class-span="['invert_primary',{'short': isCollapsed}]">
           <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
             <IconAbout/>
           </IconTemplate>
         </AppLink>
       </div>
       <div v-if="isAuth">
-        <AppLink class="link_container" name-link="profile" :name-path="appPath.Profile" :name-class="[]" :class-span="['invert_primary',{'short': isCollapsed}]">
+        <AppLink class="link_container"
+                 name-link="profile"
+                 :name-path="appPath.Profile"
+                 :name-class="[]"
+                 :class-span="['invert_primary',{'short': isCollapsed}]">
           <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
             <IconProfile/>
+          </IconTemplate>
+        </AppLink>
+      </div>
+      <div v-if="isAuth">
+        <AppLink class="link_container"
+                 name-link="articles"
+                 :name-path="appPath.Articles"
+                 :name-class="[]"
+                 :class-span="['invert_primary',{'short': isCollapsed}]">
+          <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
+            <IconArticles/>
+          </IconTemplate>
+        </AppLink>
+      </div>
+      <div v-if="isAuth">
+        <AppLink class="link_container"
+                 name-link="articles"
+                 :name-path="appPath.Articles_details"
+                 :name-class="[]"
+                 @click="setIdArticle"
+                 :class-span="['invert_primary',{'short': isCollapsed}]">
+          <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
+            <IconArticles/>
           </IconTemplate>
         </AppLink>
       </div>
@@ -46,10 +81,12 @@ import IconAbout from '@/shared/ui/iconComponents/icons/IconAbout.vue'
 import IconTemplate from '@/shared/ui/iconComponents/IconTemplate.vue'
 import IconProfile from '@/shared/ui/iconComponents/icons/IconProfile.vue'
 import { useUserStore } from '@/entities/User'
+import IconArticles from '@/shared/ui/iconComponents/icons/IconArticles.vue'
+import { ArticleStore } from '@/store'
 
 export default defineComponent({
   name: 'SideBar',
-  components: { IconProfile, IconTemplate, IconAbout, IconHome, LangSwitcher, ThemeSwitcher, MyButton, AppLink },
+  components: { IconArticles, IconProfile, IconTemplate, IconAbout, IconHome, LangSwitcher, ThemeSwitcher, MyButton, AppLink },
   data () {
     return {}
   },
@@ -71,7 +108,10 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapActions(useGlobalStore, ['changeSideView', 'changeTheme', 'getThemeLocal', 'getCollapseLocal'])
+    ...mapActions(useGlobalStore, ['changeSideView', 'changeTheme', 'getThemeLocal', 'getCollapseLocal']),
+    setIdArticle () {
+      ArticleStore.setId('1')
+    }
   }
 })
 </script>
