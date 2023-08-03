@@ -52,6 +52,14 @@ export default defineComponent({
     text-align: center;
   }
 }
+.text_start {
+  .title {
+    text-align: start;
+  }
+  .text {
+    text-align: start;
+  }
+}
 .error {
   .title {
     color: var(--red-light);

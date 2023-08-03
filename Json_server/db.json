@@ -23,16 +23,18 @@
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://www.codingavatar.com/img/studio/apps.png"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://www.codingavatar.com/img/studio/apps.png"
     }
   ],
   "articles": [
@@ -83,7 +85,7 @@
       ]
     }
   ],
-  "coments": [
+  "comments": [
     {
       "id": "1",
       "text": "some comment 1",

@@ -28,5 +28,7 @@ export const zh = {
   cancel: '取消',
   save: '节省',
   Error_field: '错误，字段不能为空',
-  articles: '文章'
+  articles: '文章',
+  comments: '评论',
+  no_comments: '暂无评论'
 }

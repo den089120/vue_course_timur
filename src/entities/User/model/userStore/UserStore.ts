@@ -8,7 +8,7 @@ export const useUserStore = defineStore({
   state: (): TypeUserStore => {
     return {
       user: {
-        id: 0,
+        id: '0',
         username: ''
       },
       isAuth: false
@@ -16,7 +16,7 @@ export const useUserStore = defineStore({
   },
   getters: {},
   actions: {
-    setUser (id: number, username: string) {
+    setUser (id: string, username: string) {
       this.user.id = id
       this.user.username = username
       this.isAuth = true
@@ -31,7 +31,7 @@ export const useUserStore = defineStore({
       }
     },
     async removeUser () {
-      this.user.id = 0
+      this.user.id = '0'
       this.user.username = ''
       this.isAuth = false
       localStorage.removeItem(USER_LOCALESTORAGE_KEY)

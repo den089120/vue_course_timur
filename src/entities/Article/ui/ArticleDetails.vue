@@ -19,6 +19,8 @@
       <ArticleImageBlockComponent v-if="el.type === blockType.IMAGE" :block="el" class="articles_blocks"/>
       <ArticleTextBlockComponent v-if="el.type === blockType.TEXT" :block="el" class="articles_blocks"/>
     </div>
+    <TextApp :mods="{}" :name-class="['text_start']" :title="$t('comments')" class="comment_title"/>
+    <CommentList :comments="getComList()"/>
   </div>
 </template>
 
@@ -28,6 +30,7 @@ import AvatarApp from '@/shared/ui/Avatar/AvatarApp.vue'
 import { mapState } from 'pinia'
 import { useArticleStore } from '@/entities/Article/model/articleStore/ArticleStore'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
+import { CommentStoreORM } from '@/store'
 import TextApp from '@/shared/ui/textApp/TextApp.vue'
 import IconTemplate from '@/shared/ui/iconComponents/IconTemplate.vue'
 import IconEye from '@/shared/ui/iconComponents/icons/IconEye.vue'
@@ -37,10 +40,11 @@ import IconCalendar1 from '@/shared/ui/iconComponents/icons/IconCalendar_1.vue'
 import ArticleCodeBlockComponent from '@/entities/Article/ui/ArticleCodeBlockComponent.vue'
 import ArticleImageBlockComponent from '@/entities/Article/ui/ArticleImageBlockComponent.vue'
 import ArticleTextBlockComponent from '@/entities/Article/ui/ArticleTextBlockComponent.vue'
+import CommentList from '@/entities/Comment/ui/CommentList.vue'
 
 export default defineComponent({
   name: 'ArticleDetails',
-  components: { ArticleTextBlockComponent, ArticleImageBlockComponent, ArticleCodeBlockComponent, TextApp, AvatarApp, IconTemplate, IconEye, IconCalendar1 },
+  components: { CommentList, ArticleTextBlockComponent, ArticleImageBlockComponent, ArticleCodeBlockComponent, TextApp, AvatarApp, IconTemplate, IconEye, IconCalendar1 },
   data () {
     return {}
   },
@@ -52,6 +56,13 @@ export default defineComponent({
     },
     blockType () {
       return ArticleBlockType
+    }
+  },
+  methods: {
+    getComList () {
+      if (this.data) {
+        return CommentStoreORM.where('articlesId', this.data?.id).get()
+      }
     }
   }
 })
@@ -76,5 +87,8 @@ export default defineComponent({
 .articles_blocks {
   margin-top: 16px;
   text-align: start;
+}
+.comment_title {
+  margin-top: 20px;
 }
 </style>

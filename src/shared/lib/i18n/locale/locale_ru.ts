@@ -28,5 +28,7 @@ export const ru = {
   cancel: 'Отмена',
   save: 'Сохранить',
   Error_field: 'Ошибка, поле не должно быть пустым',
-  articles: 'Статьи'
+  articles: 'Статьи',
+  comments: 'Комментарии',
+  no_comments: 'Комментарии отсутствуют'
 }

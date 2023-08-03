@@ -28,5 +28,7 @@ export const en = {
   cancel: 'Cancel',
   save: 'Save',
   Error_field: 'Error, field must not be empty',
-  articles: 'Articles'
+  articles: 'Articles',
+  comments: 'Comments',
+  no_comments: 'No comments'
 }
