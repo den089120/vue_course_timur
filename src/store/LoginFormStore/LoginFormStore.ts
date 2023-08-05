@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia'
 import { TypeLoginFormStore } from './TypeLoginForm'
-import { apiAxios } from '@/shared/api/api'
-import { UserStore, ProfileStore } from '@/store'
+import { axiosPost } from '@/shared/api/api'
+import { ProfileStore, UserStore } from '@/store'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
+import { UrlPaths } from '@/shared/const/urlPaths'
+import { TypeUser } from '@/entities/User'
 
 export const useLoginFormStore = defineStore({
   id: 'LoginFormStore',
@@ -25,10 +27,14 @@ export const useLoginFormStore = defineStore({
       this.isLoading = true
       this.errorText = ''
       try {
-        const response = await apiAxios.post('/login', {
+        const response = await axiosPost<TypeUser>(UrlPaths.LOGIN, {
           username: name,
           password: password
         })
+        // const response = await apiAxios.post('/login', {
+        //   username: name,
+        //   password: password
+        // })
         if (!response.data) {
           this.isLoading = false
           this.errorText = 'You_are_not_registred'

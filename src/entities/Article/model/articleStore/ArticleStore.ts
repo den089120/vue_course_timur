@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import { Article } from '../articleTypes/article'
 import { ArticleDetailsSchema } from '../articleTypes/articleDetailsSchema'
-import { apiAxios } from '@/shared/api/api'
+import { axiosGet } from '@/shared/api/api'
+import { UrlPaths } from '@/shared/const/urlPaths'
 
 export const useArticleStore = defineStore({
   id: 'ArticleStore',
@@ -21,7 +22,8 @@ export const useArticleStore = defineStore({
     async getArticleDetails (): Promise<void> {
       this.isLoading = true
       try {
-        const res = await apiAxios.get<Article>(`/articles/${this.articleId}`)
+        const res = await axiosGet<Article>(UrlPaths.ARTICLES, this.articleId)
+        // const res = await apiAxios.get<Article>(`/articles/${this.articleId}`)
         if (res) {
           this.isLoading = false
           this.data = res.data

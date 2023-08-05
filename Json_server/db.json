@@ -111,13 +111,26 @@
       "userId": "1"
     }
   ],
-  "profile": {
-    "firstname": "Danil",
-    "lastname": "Ann",
-    "age": "43",
-    "currency": "RUB",
-    "country": "China",
-    "username": "admin",
-    "avatar": "https://www.codingavatar.com/img/studio/apps.png"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "firstname": "Danil",
+      "lastname": "Ann",
+      "age": "43",
+      "currency": "RUB",
+      "country": "China",
+      "username": "dan",
+      "avatar": "https://www.codingavatar.com/img/studio/apps.png"
+    },
+    {
+      "id": "2",
+      "firstname": "Anna",
+      "lastname": "Daniilovna",
+      "age": "13",
+      "currency": "RUB",
+      "country": "China",
+      "username": "ann",
+      "avatar": "https://www.codingavatar.com/img/studio/apps.png"
+    }
+  ]
 }

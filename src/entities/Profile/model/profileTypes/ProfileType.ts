@@ -1,5 +1,5 @@
 
-export interface ProfileSchema {
+export interface ProfileSchema extends Record<string, string | undefined>{
   firstname: string | undefined;
   lastname: string | undefined;
   age: string | undefined;

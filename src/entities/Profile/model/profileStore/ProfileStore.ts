@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { ProfileSchema, ProfileType } from '../profileTypes/ProfileType'
-import { apiAxios } from '@/shared/api/api'
+import { axiosGet, axiosPut } from '@/shared/api/api'
+import { UrlPaths } from '@/shared/const/urlPaths'
+import { UserStore } from '@/store'
 
 export const useProfileStore = defineStore({
   id: 'ProfileStore',
@@ -23,7 +25,8 @@ export const useProfileStore = defineStore({
     async getProfile (): Promise<void> {
       this.isLoading = true
       try {
-        const res = await apiAxios.get('/profile')
+        const res = await axiosGet<ProfileSchema>(UrlPaths.PROFILE, UserStore.user.id)
+        // const res = await apiAxios.get('/profile')
         if (res) {
           this.isLoading = false
           this.data = res.data
@@ -39,7 +42,8 @@ export const useProfileStore = defineStore({
     async updateProfile (data: ProfileSchema): Promise<void> {
       this.isLoading = true
       try {
-        const res = await apiAxios.put('/profile', data)
+        const res = await axiosPut<ProfileSchema>(UrlPaths.PROFILE, { ...data }, UserStore.user.id)
+        // const res = await apiAxios.put('/profile', data)
         if (res) {
           this.isLoading = false
           this.data = res.data
