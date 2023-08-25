@@ -19,6 +19,7 @@
       <ArticleImageBlockComponent v-if="el.type === blockType.IMAGE" :block="el" class="articles_blocks"/>
       <ArticleTextBlockComponent v-if="el.type === blockType.TEXT" :block="el" class="articles_blocks"/>
     </div>
+    <asyncNewCommentForm/>
     <TextApp :mods="{}" :name-class="['text_start']" :title="$t('comments')" class="comment_title"/>
     <CommentList :comments="getComList()"/>
   </div>
@@ -41,10 +42,11 @@ import ArticleCodeBlockComponent from '@/entities/Article/ui/ArticleCodeBlockCom
 import ArticleImageBlockComponent from '@/entities/Article/ui/ArticleImageBlockComponent.vue'
 import ArticleTextBlockComponent from '@/entities/Article/ui/ArticleTextBlockComponent.vue'
 import CommentList from '@/entities/Comment/ui/CommentList.vue'
+import { asyncNewCommentForm } from '@/shared/lib/asyncComponents'
 
 export default defineComponent({
   name: 'ArticleDetails',
-  components: { CommentList, ArticleTextBlockComponent, ArticleImageBlockComponent, ArticleCodeBlockComponent, TextApp, AvatarApp, IconTemplate, IconEye, IconCalendar1 },
+  components: { CommentList, asyncNewCommentForm, ArticleTextBlockComponent, ArticleImageBlockComponent, ArticleCodeBlockComponent, TextApp, AvatarApp, IconTemplate, IconEye, IconCalendar1 },
   data () {
     return {}
   },

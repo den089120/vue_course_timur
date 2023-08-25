@@ -19,3 +19,16 @@ export interface CommentStoreSchema {
   isLoading?: boolean;
   error?: string;
 }
+
+export interface schemaComment {
+  text: string;
+  articlesId: string;
+  userId: string;
+}
+
+export interface Comment {
+  id: string;
+  text: string;
+  articlesId: string;
+  userId: string;
+}

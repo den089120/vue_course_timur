@@ -43,7 +43,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .login_input {
   display: flex;
   position: relative;
@@ -84,6 +84,13 @@ export default defineComponent({
   input:read-only ~ div,
   input:focus ~ div {
     height: 35px;;
+  }
+}
+
+.login_input_gow {
+  width: 90%;
+  input {
+    flex-grow: 1;
   }
 }
 

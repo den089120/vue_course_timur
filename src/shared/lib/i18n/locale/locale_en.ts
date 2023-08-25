@@ -30,5 +30,7 @@ export const en = {
   Error_field: 'Error, field must not be empty',
   articles: 'Articles',
   comments: 'Comments',
-  no_comments: 'No comments'
+  no_comments: 'No comments',
+  enter_comment_text: 'Enter comment text',
+  send_comment: 'Send'
 }

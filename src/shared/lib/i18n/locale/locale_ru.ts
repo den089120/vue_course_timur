@@ -30,5 +30,7 @@ export const ru = {
   Error_field: 'Ошибка, поле не должно быть пустым',
   articles: 'Статьи',
   comments: 'Комментарии',
-  no_comments: 'Комментарии отсутствуют'
+  no_comments: 'Комментарии отсутствуют',
+  enter_comment_text: 'Введите текст комментария',
+  send_comment: 'Отправить'
 }
