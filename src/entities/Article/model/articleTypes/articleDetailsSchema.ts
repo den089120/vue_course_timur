@@ -5,4 +5,5 @@ export interface ArticleDetailsSchema {
   error?: string;
   data?: Article;
   articleId: string;
+  listArticles?: Array<Article>
 }

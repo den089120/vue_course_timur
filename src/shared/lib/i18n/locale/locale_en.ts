@@ -32,5 +32,7 @@ export const en = {
   comments: 'Comments',
   no_comments: 'No comments',
   enter_comment_text: 'Enter comment text',
-  send_comment: 'Send'
+  send_comment: 'Send',
+  read_more: 'Read more...',
+  back_to_articles: 'Back to articles'
 }

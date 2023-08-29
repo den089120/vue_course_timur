@@ -32,5 +32,7 @@ export const ru = {
   comments: 'Комментарии',
   no_comments: 'Комментарии отсутствуют',
   enter_comment_text: 'Введите текст комментария',
-  send_comment: 'Отправить'
+  send_comment: 'Отправить',
+  read_more: 'Читать далее...',
+  back_to_articles: 'Назад к статьям'
 }

@@ -1,3 +1,3 @@
-import { Article } from './model/articleTypes/article'
+import { Article, ArticleView } from './model/articleTypes/article'
 
-export { Article }
+export { Article, ArticleView }

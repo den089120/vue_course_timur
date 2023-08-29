@@ -1,5 +1,6 @@
 <template>
   <div>
+    <MyButton :mods="{}" :name-class="['outline_btn']" @click="getArticleList" class="back_btn">{{$t('back_to_articles')}}</MyButton>
     <div class="avatar_wrapper">
       <AvatarApp :mods="{}" :name-class="['']" :size="'200'" :alt="$t('avatar')" :src="data.img"/>
     </div>
@@ -21,7 +22,7 @@
     </div>
     <asyncNewCommentForm/>
     <TextApp :mods="{}" :name-class="['text_start']" :title="$t('comments')" class="comment_title"/>
-    <CommentList :comments="getComList()"/>
+    <CommentList :comments="getComList()" :is-loading="isLoading"/>
   </div>
 </template>
 
@@ -43,16 +44,32 @@ import ArticleImageBlockComponent from '@/entities/Article/ui/ArticleImageBlockC
 import ArticleTextBlockComponent from '@/entities/Article/ui/ArticleTextBlockComponent.vue'
 import CommentList from '@/entities/Comment/ui/CommentList.vue'
 import { asyncNewCommentForm } from '@/shared/lib/asyncComponents'
+import { useCommentStore } from '@/entities/Comment/model/Store/CommentStore'
+import MyButton from '@/shared/ui/myButton/MyButton.vue'
+import { RoutesPath } from '@/router/RoutesPath'
 
 export default defineComponent({
   name: 'ArticleDetails',
-  components: { CommentList, asyncNewCommentForm, ArticleTextBlockComponent, ArticleImageBlockComponent, ArticleCodeBlockComponent, TextApp, AvatarApp, IconTemplate, IconEye, IconCalendar1 },
+  components: {
+    CommentList,
+    asyncNewCommentForm,
+    ArticleTextBlockComponent,
+    ArticleImageBlockComponent,
+    ArticleCodeBlockComponent,
+    TextApp,
+    AvatarApp,
+    IconTemplate,
+    IconEye,
+    IconCalendar1,
+    MyButton
+  },
   data () {
     return {}
   },
   computed: {
     ...mapState(useArticleStore, ['data']),
     ...mapState(useGlobalStore, ['isDark']),
+    ...mapState(useCommentStore, ['isLoading']),
     colors ():Record<string, string> {
       return ColorIcons
     },
@@ -65,6 +82,9 @@ export default defineComponent({
       if (this.data) {
         return CommentStoreORM.where('articlesId', this.data?.id).get()
       }
+    },
+    getArticleList () {
+      this.$router.push({ path: RoutesPath.Articles })
     }
   }
 })
@@ -92,5 +112,8 @@ export default defineComponent({
 }
 .comment_title {
   margin-top: 20px;
+}
+.back_btn {
+  display: block;
 }
 </style>

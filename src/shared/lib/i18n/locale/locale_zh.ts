@@ -32,5 +32,7 @@ export const zh = {
   comments: '评论',
   no_comments: '暂无评论',
   enter_comment_text: '输入评论文字',
-  send_comment: '发送'
+  send_comment: '发送',
+  read_more: '阅读更多...',
+  back_to_articles: '返回文章'
 }

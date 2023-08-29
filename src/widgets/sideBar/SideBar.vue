@@ -45,18 +45,6 @@
           </IconTemplate>
         </AppLink>
       </div>
-      <div v-if="isAuth">
-        <AppLink class="link_container"
-                 name-link="articles"
-                 :name-path="appPath.Articles_details"
-                 :name-class="[]"
-                 @click="setIdArticle"
-                 :class-span="['invert_primary',{'short': isCollapsed}]">
-          <IconTemplate :icon-color="isDark? colors.d_inverted_primary_color : colors.inverted_primary_color">
-            <IconArticles/>
-          </IconTemplate>
-        </AppLink>
-      </div>
     </div>
     <div class="switchers">
       <ThemeSwitcher @click="changeTheme"/>
@@ -82,7 +70,6 @@ import IconTemplate from '@/shared/ui/iconComponents/IconTemplate.vue'
 import IconProfile from '@/shared/ui/iconComponents/icons/IconProfile.vue'
 import { useUserStore } from '@/entities/User'
 import IconArticles from '@/shared/ui/iconComponents/icons/IconArticles.vue'
-import { ArticleStore } from '@/store'
 
 export default defineComponent({
   name: 'SideBar',
@@ -108,10 +95,7 @@ export default defineComponent({
     }
   },
   methods: {
-    ...mapActions(useGlobalStore, ['changeSideView', 'changeTheme', 'getThemeLocal', 'getCollapseLocal']),
-    setIdArticle () {
-      ArticleStore.setId('1')
-    }
+    ...mapActions(useGlobalStore, ['changeSideView', 'changeTheme', 'getThemeLocal', 'getCollapseLocal'])
   }
 })
 </script>

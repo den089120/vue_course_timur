@@ -9,11 +9,28 @@ export const useGlobalStore = defineStore({
       isDark: false,
       isCollapsed: false,
       langApp: 'ru',
-      isModal: false
+      isModal: false,
+      isListArticles: 'big'
     }
   },
   getters: {},
   actions: {
+    listArticlesIs () {
+      this.isListArticles = 'big'
+      const str = process.env.VUE_APP_NAME_VIEW_ARTICLES
+      if (str) localStorage.setItem(str, JSON.stringify(this.isListArticles))
+    },
+    removeListArticles () {
+      this.isListArticles = 'small'
+      const str = process.env.VUE_APP_NAME_VIEW_ARTICLES
+      if (str) localStorage.setItem(str, JSON.stringify(this.isListArticles))
+    },
+    getIsListArticles () {
+      const str = process.env.VUE_APP_NAME_VIEW_ARTICLES
+      if (str) {
+        this.isListArticles = JSON.stringify(localStorage.getItem(str))
+      }
+    },
     closeModal (): void {
       this.isModal = false
     },

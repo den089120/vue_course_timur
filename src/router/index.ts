@@ -5,7 +5,7 @@ import NotFoundPage from '@/pages/notFoundPage/NotFoundPage.vue'
 import { RoutesPath } from '@/router/RoutesPath'
 import ProfilePage from '@/pages/ProfilePage/ProfilePage.vue'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
-import { ProfileStore, ArticleStore, CommentStore, ProfileUserReadStore } from '@/store'
+import { ProfileStore, ArticleStore, CommentStore, ProfileUserReadStore, GlobalStore } from '@/store'
 import ArticlesPage from '@/pages/ArticlesPage/ArticlesPage.vue'
 import ArticleDetailsPage from '@/pages/ArticleDetailsPage/ArticleDetailsPage.vue'
 import { asyncProfileUserReadPage } from '@/shared/lib/asyncComponents'
@@ -48,7 +48,8 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: async (to) => {
       const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
       if (!isAuthenticated) return { path: RoutesPath.Main }
-      // await ProfileStore.getProfile()
+      await ArticleStore.getArticles()
+      await GlobalStore.getIsListArticles()
     }
   },
   {

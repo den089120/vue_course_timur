@@ -3,4 +3,5 @@ export interface TypeGlobalState {
   isCollapsed: boolean;
   langApp: string;
   isModal: boolean;
+  isListArticles: string;
 }
