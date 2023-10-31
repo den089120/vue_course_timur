@@ -1,7 +1,8 @@
 <template>
   <div class="article_list">
-    <ArticleListItemSkeleton v-if="isLoading" :view="view" />
-    <ArticleListItem v-else v-for="el in listArticles" :key="el.id" :article="el" :view="view"/>
+    <ArticleListItem v-for="el in listArticles" :key="el.id" :article="el" :view="view"/>
+    <ArticleListItemSkeleton v-if="isLoading" :view="view"/>
+    <div v-intersection="{ element: this.$refs['intersection'], callback: myMethod }" style="width: 100%;height: 40px"></div>
   </div>
 </template>
 
@@ -10,7 +11,7 @@ import { defineComponent, PropType } from 'vue'
 import { Article } from '@/entities/Article'
 import ArticleListItem from '@/entities/Article/ui/ArticleListItem.vue'
 import ArticleListItemSkeleton from '@/entities/Article/ui/ArticleListItemSkeleton.vue'
-import { mapState } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import { useArticleStore } from '@/entities/Article/model/articleStore/ArticleStore'
 
 export default defineComponent({
@@ -25,7 +26,6 @@ export default defineComponent({
     },
     view: {
       type: String
-      // type: Object as PropType<ArticleView>
     }
   },
   data () {
@@ -34,6 +34,13 @@ export default defineComponent({
   },
   computed: {
     ...mapState(useArticleStore, ['listArticles'])
+  },
+  methods: {
+    ...mapActions(useArticleStore, ['addPage', 'getArticles']),
+    myMethod () {
+      this.addPage()
+      this.getArticles()
+    }
   }
 })
 </script>

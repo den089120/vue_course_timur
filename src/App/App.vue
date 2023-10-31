@@ -4,7 +4,7 @@
     <div class="content_page">
       <SideBar/>
         <VErrorBoundary :fall-back="myFallBack">
-          <router-view class="page_wrapper"/>
+          <router-view ref="intersection" class="page_wrapper"/>
         </VErrorBoundary>
     </div>
   </div>

@@ -48,8 +48,10 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: async (to) => {
       const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
       if (!isAuthenticated) return { path: RoutesPath.Main }
-      await ArticleStore.getArticles()
-      await GlobalStore.getIsListArticles()
+      // ArticleStore.setLoading(true)
+      // await GlobalStore.getIsListArticles()
+      // await ArticleStore.getArticles()
+      // ArticleStore.setLoading(false)
     }
   },
   {

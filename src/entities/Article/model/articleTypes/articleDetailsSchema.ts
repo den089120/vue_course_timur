@@ -5,5 +5,8 @@ export interface ArticleDetailsSchema {
   error?: string;
   data?: Article;
   articleId: string;
-  listArticles?: Array<Article>
+  listArticles?: Array<Article>;
+  page: string;
+  limit: string;
+  allPages: number | null;
 }
