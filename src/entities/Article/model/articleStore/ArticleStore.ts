@@ -16,11 +16,15 @@ export const useArticleStore = defineStore({
       listArticles: undefined,
       page: '1',
       limit: '4',
-      allPages: null
+      allPages: null,
+      scrollNumber: 0
     }
   },
   getters: {},
   actions: {
+    setScrollNumber (num: number | undefined): void {
+      if (num) this.scrollNumber = num
+    },
     setId (id: string): void {
       this.articleId = id
     },

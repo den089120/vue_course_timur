@@ -9,4 +9,5 @@ export interface ArticleDetailsSchema {
   page: string;
   limit: string;
   allPages: number | null;
+  scrollNumber: number;
 }

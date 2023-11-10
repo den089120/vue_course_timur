@@ -59,7 +59,6 @@ export default defineComponent({
     },
     view: {
       type: String
-      // type: Object as PropType<ArticleView>
     }
   },
   data () {
@@ -75,6 +74,7 @@ export default defineComponent({
   },
   methods: {
     getArticle () {
+      ArticleStore.setScrollNumber(document.querySelector('.page_wrapper')?.scrollTop)
       if (this.article) {
         ArticleStore.setId(this.article?.id)
         this.$router.push({ path: RoutesPath.Articles_details })
