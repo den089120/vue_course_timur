@@ -6,7 +6,7 @@
               :key="opt.valueOpt"
               :value="opt.valueOpt"
               :selected="opt.valueOpt === selectedItem"
-      >{{ opt.nameOpt }}</option>
+      >{{ isI18n ? $t(opt.nameOpt) : opt.nameOpt }}</option>
     </select>
   </div>
 </template>
@@ -29,6 +29,10 @@ export default defineComponent({
       type: Array as PropType<SelectOptionType[]>
     },
     readonlyIs: {
+      type: Boolean,
+      default: false
+    },
+    isI18n: {
       type: Boolean,
       default: false
     },

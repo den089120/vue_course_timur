@@ -9,7 +9,7 @@ export const apiAxios = axios.create({
   }
 })
 
-export function axiosGet<T> (urlReq: UrlPaths, urlParams = '', queryParams: Record<string, string> = {}): Promise<AxiosResponse<T>> {
+export function axiosGet<T> (urlReq: UrlPaths, urlParams = '', queryParams: Record<string, string | undefined> = {}): Promise<AxiosResponse<T>> {
   const url = urlParams ? `${urlReq}/${urlParams}` : urlReq
   return apiAxios.get<T>(url, {
     params: {

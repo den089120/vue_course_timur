@@ -34,5 +34,16 @@ export const en = {
   enter_comment_text: 'Enter comment text',
   send_comment: 'Send',
   read_more: 'Read more...',
-  back_to_articles: 'Back to articles'
+  back_to_articles: 'Back to articles',
+  Ascending: 'Ascending',
+  Descending: 'Descending',
+  For_date: 'For date',
+  For_views: 'For views',
+  For_title: 'For title',
+  Search: 'Search',
+  All: 'All',
+  IT: 'IT',
+  SCIENCE: 'Science',
+  ECONOMICS: 'Economics',
+  Type_Article: 'Type article'
 }

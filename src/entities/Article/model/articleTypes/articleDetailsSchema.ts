@@ -10,4 +10,8 @@ export interface ArticleDetailsSchema {
   limit: string;
   allPages: number | null;
   scrollNumber: number;
+  ascOrDesc: string;
+  sortOption: string;
+  searchString: string;
+  sortType: string;
 }

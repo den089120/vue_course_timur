@@ -34,5 +34,16 @@ export const ru = {
   enter_comment_text: 'Введите текст комментария',
   send_comment: 'Отправить',
   read_more: 'Читать далее...',
-  back_to_articles: 'Назад к статьям'
+  back_to_articles: 'Назад к статьям',
+  Ascending: 'По возрастанию',
+  Descending: 'По убыванию',
+  For_date: 'По дате',
+  For_views: 'По просмотрам',
+  For_title: 'По заголовкам',
+  Search: 'Поиск',
+  All: 'Любой',
+  IT: 'Программирование',
+  SCIENCE: 'Наука',
+  ECONOMICS: 'Экономика',
+  Type_Article: 'Тема статьи'
 }

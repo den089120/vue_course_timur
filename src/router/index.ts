@@ -48,10 +48,11 @@ const routes: Array<RouteRecordRaw> = [
     beforeEnter: async (to) => {
       const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
       if (!isAuthenticated) return { path: RoutesPath.Main }
-      // ArticleStore.setLoading(true)
-      // await GlobalStore.getIsListArticles()
-      // await ArticleStore.getArticles()
-      // ArticleStore.setLoading(false)
+      const obj = to.query
+      if (obj.sort) ArticleStore.setAscOrDesc(obj.sort.toString())
+      if (obj.order) ArticleStore.setSortOption(obj.order.toString())
+      if (obj.search) ArticleStore.setSearchString(obj.search.toString())
+      if (obj.type) ArticleStore.setSortType(obj.type.toString())
     }
   },
   {

@@ -41,10 +41,10 @@ export default defineComponent({
     ...mapState(useArticleStore, ['listArticles'])
   },
   methods: {
-    ...mapActions(useArticleStore, ['addPage', 'getArticles']),
+    ...mapActions(useArticleStore, ['addPage', 'getListArticle']),
     myMethod () {
       this.addPage()
-      this.getArticles()
+      this.getListArticle()
     }
   }
 })

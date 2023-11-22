@@ -22,7 +22,7 @@ export default defineComponent({
     return {}
   },
   created () {
-    this.getArticles()
+    this.getListArticle()
   },
   computed: {
     viewArticle () {
@@ -34,7 +34,7 @@ export default defineComponent({
     ...mapState(useGlobalStore, ['isListArticles'])
   },
   methods: {
-    ...mapActions(useArticleStore, ['getArticles'])
+    ...mapActions(useArticleStore, ['getListArticle'])
   }
 })
 </script>

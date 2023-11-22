@@ -34,5 +34,16 @@ export const zh = {
   enter_comment_text: '输入评论文字',
   send_comment: '发送',
   read_more: '阅读更多...',
-  back_to_articles: '返回文章'
+  back_to_articles: '返回文章',
+  Ascending: '上升',
+  Descending: '下降',
+  For_date: '对于日期',
+  For_views: '供浏览',
+  For_title: '对于标题',
+  Search: '搜索',
+  All: '全部',
+  IT: '它',
+  SCIENCE: '科学',
+  ECONOMICS: '经济学',
+  Type_Article: '类型文章'
 }
