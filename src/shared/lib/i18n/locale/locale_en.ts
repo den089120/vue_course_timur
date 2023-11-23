@@ -45,5 +45,6 @@ export const en = {
   IT: 'IT',
   SCIENCE: 'Science',
   ECONOMICS: 'Economics',
-  Type_Article: 'Type article'
+  Type_Article: 'Type article',
+  recommendation_articles: 'Recommendation articles'
 }

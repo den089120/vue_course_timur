@@ -45,5 +45,6 @@ export const zh = {
   IT: '它',
   SCIENCE: '科学',
   ECONOMICS: '经济学',
-  Type_Article: '类型文章'
+  Type_Article: '类型文章',
+  recommendation_articles: '推荐文章'
 }

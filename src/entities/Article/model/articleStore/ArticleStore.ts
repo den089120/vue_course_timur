@@ -46,6 +46,9 @@ export const useArticleStore = defineStore({
     setSortType (type: string) {
       this.sortType = type
     },
+    setArticle (article: Article) {
+      this.data = article
+    },
     setLoading (bool: boolean): void {
       this.isLoading = bool
     },
@@ -97,6 +100,19 @@ export const useArticleStore = defineStore({
           this.error = ''
         }
         return res
+      } catch (e) {
+        this.isLoading = false
+        this.error = ''
+        return undefined
+      }
+    },
+    async getArticlesMini (): Promise<AxiosResponse<Article[]> | undefined> {
+      try {
+        return await axiosGet<Article[]>(UrlPaths.ARTICLES, '', {
+          _expand: 'user',
+          _limit: '4',
+          type: this.sortType === 'All' ? undefined : this.sortType
+        })
       } catch (e) {
         this.isLoading = false
         this.error = ''

@@ -45,5 +45,6 @@ export const ru = {
   IT: 'Программирование',
   SCIENCE: 'Наука',
   ECONOMICS: 'Экономика',
-  Type_Article: 'Тема статьи'
+  Type_Article: 'Тема статьи',
+  recommendation_articles: 'Рекомендуемые статьи'
 }

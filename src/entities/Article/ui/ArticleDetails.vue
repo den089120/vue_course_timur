@@ -20,6 +20,25 @@
       <ArticleImageBlockComponent v-if="el.type === blockType.IMAGE" :block="el" class="articles_blocks"/>
       <ArticleTextBlockComponent v-if="el.type === blockType.TEXT" :block="el" class="articles_blocks"/>
     </div>
+    <span class="recommendation_header">{{ $t('recommendation_articles') }}</span>
+    <div class="recommendation_list">
+      <div v-for="el in miniListArticle" :key="el.id" class="article_list_item_small">
+        <div class="card" @click="getArticle(el.id)">
+          <div class="image_wrapper">
+            <img :src="el.img" :alt="el.title" class="img_article"/>
+            <TextApp :mods="{}" :name-class="['']" :text="el.createdAt" class="date"/>
+          </div>
+          <div class="info_wrapper">
+            <TextApp :mods="{}" :name-class="['']" :text="el.type.join(', ')" class="types"/>
+            <TextApp :mods="{}" :name-class="['']" :text="String(el.views)" class="views"/>
+            <IconTemplate>
+              <IconEye/>
+            </IconTemplate>
+          </div>
+          <TextApp :mods="{}" :name-class="['']" :text="el.title" class="title"/>
+        </div>
+      </div>
+    </div>
     <asyncNewCommentForm/>
     <TextApp :mods="{}" :name-class="['text_start']" :title="$t('comments')" class="comment_title"/>
     <CommentList :comments="getComList()" :is-loading="isLoading"/>
@@ -32,11 +51,11 @@ import AvatarApp from '@/shared/ui/Avatar/AvatarApp.vue'
 import { mapState } from 'pinia'
 import { useArticleStore } from '@/entities/Article/model/articleStore/ArticleStore'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
-import { CommentStoreORM } from '@/store'
+import { ArticleStore, CommentStoreORM } from '@/store'
 import TextApp from '@/shared/ui/textApp/TextApp.vue'
 import IconTemplate from '@/shared/ui/iconComponents/IconTemplate.vue'
 import IconEye from '@/shared/ui/iconComponents/icons/IconEye.vue'
-import { ArticleBlockType } from '@/entities/Article/model/articleTypes/article'
+import { Article, ArticleBlockType } from '@/entities/Article/model/articleTypes/article'
 import { ColorIcons } from '@/shared/ui/iconComponents/ColorForIcons'
 import IconCalendar1 from '@/shared/ui/iconComponents/icons/IconCalendar_1.vue'
 import ArticleCodeBlockComponent from '@/entities/Article/ui/ArticleCodeBlockComponent.vue'
@@ -64,7 +83,16 @@ export default defineComponent({
     MyButton
   },
   data () {
-    return {}
+    return {
+      miniListArticle: [] as Array<Article>,
+      idArticle: ''
+    }
+  },
+  created () {
+    ArticleStore.getArticlesMini().then(res => {
+      const dat = res?.data
+      if (dat) this.miniListArticle = dat
+    })
   },
   computed: {
     ...mapState(useArticleStore, ['data']),
@@ -85,6 +113,15 @@ export default defineComponent({
     },
     getArticleList () {
       this.$router.push({ path: RoutesPath.Articles })
+    },
+    getArticle (id: string) {
+      console.log(this.miniListArticle.find(el => el.id === id))
+      const el = this.miniListArticle.find(el => el.id === id)
+      if (el) {
+        ArticleStore.setArticle(el)
+        const elem = document.querySelector('.page_wrapper')
+        if (elem) elem.scrollTop = 0
+      }
     }
   }
 })
@@ -115,5 +152,79 @@ export default defineComponent({
 }
 .back_btn {
   display: block;
+}
+.recommendation_header {
+  font-size: 22px;
+  display: block;
+  margin: 15px 0;
+}
+.recommendation_list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  .article_list_item_small {
+    width: 230px;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    .card {
+      padding: 15px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      .image_wrapper {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        .img_article {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+        }
+        .date {
+          position: absolute;
+          right: 0;
+          top: 0;
+          display: none;
+        }
+      }
+      .info_wrapper {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+        .types {
+          width: 115px;
+          span {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+        .views {
+          margin-left: auto;
+          margin-right: 8px;
+        }
+      }
+      .title {
+        margin-top: 8px;
+        span {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    &:hover {
+      .card {
+        .image_wrapper {
+          .date {
+            display: block;
+          }
+        }
+      }
+      opacity: 0.8;
+      transform: scale(1.01);
+    }
+  }
 }
 </style>
