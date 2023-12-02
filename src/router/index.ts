@@ -5,10 +5,12 @@ import NotFoundPage from '@/pages/notFoundPage/NotFoundPage.vue'
 import { RoutesPath } from '@/router/RoutesPath'
 import ProfilePage from '@/pages/ProfilePage/ProfilePage.vue'
 import { USER_LOCALESTORAGE_KEY } from '@/shared/const/localeStorage'
-import { ProfileStore, ArticleStore, CommentStore, ProfileUserReadStore, GlobalStore } from '@/store'
+import { ProfileStore, ArticleStore, CommentStore, ProfileUserReadStore, GlobalStore, UserStore } from '@/store'
 import ArticlesPage from '@/pages/ArticlesPage/ArticlesPage.vue'
 import ArticleDetailsPage from '@/pages/ArticleDetailsPage/ArticleDetailsPage.vue'
 import { asyncProfileUserReadPage } from '@/shared/lib/asyncComponents'
+import ArticleCreatePage from '@/pages/ArticleCreatePage/ArticleCreatePage.vue'
+import ArticleEditPage from '@/pages/ArticleEditPage/ArticleEditPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -64,6 +66,25 @@ const routes: Array<RouteRecordRaw> = [
       if (!isAuthenticated) return { path: RoutesPath.Main }
       await ArticleStore.getArticleDetails()
       await CommentStore.getComments()
+    }
+  },
+  {
+    path: RoutesPath.ArticleCreate,
+    name: 'ArticleCreatePage',
+    component: ArticleCreatePage,
+    beforeEnter: async (to) => {
+      const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
+      if (!isAuthenticated) return { path: RoutesPath.Main }
+    }
+  },
+  {
+    path: RoutesPath.ArticleEdit,
+    name: 'ArticleEditPage',
+    component: ArticleEditPage,
+    beforeEnter: async (to) => {
+      const isAuthenticated = localStorage.getItem(USER_LOCALESTORAGE_KEY)
+      if (!isAuthenticated) return { path: RoutesPath.Main }
+      // if (ArticleStore.data?.user.id !== UserStore.user.id) return { path: RoutesPath.Main }
     }
   },
   {

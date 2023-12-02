@@ -46,5 +46,7 @@ export const ru = {
   SCIENCE: 'Наука',
   ECONOMICS: 'Экономика',
   Type_Article: 'Тема статьи',
-  recommendation_articles: 'Рекомендуемые статьи'
+  recommendation_articles: 'Рекомендуемые статьи',
+  edit_article: 'Редактировать статью',
+  Create_article: 'Создание статьи'
 }

@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "db:serve": "json-server --watch db.json --port=8000",
-    "db:dev:server": "node ./json_server/index.js",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "db:dev:server": "node ./json_server/index.js",
+    "db:serve": "json-server --watch db.json --port=8000",
+    "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
     "-": "^0.0.1",
@@ -49,7 +49,7 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/compiler-sfc": "^3.2.47",
     "@vue/eslint-config-standard": "^6.1.0",
-    "@vue/eslint-config-typescript": "^8.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^2.0.0-0",
     "@vue/vue3-jest": "^27.0.0-alpha.1",
     "babel-jest": "^27.0.6",

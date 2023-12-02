@@ -1,6 +1,9 @@
 <template>
   <div>
-    <MyButton :mods="{}" :name-class="['outline_btn']" @click="getArticleList" class="back_btn">{{$t('back_to_articles')}}</MyButton>
+    <div class="article_details_header">
+      <MyButton :mods="{}" :name-class="['outline_btn']" @click="getArticleList" class="back_btn">{{$t('back_to_articles')}}</MyButton>
+      <MyButton v-if="isEdit" :mods="{}" :name-class="['outline_btn']" @click="getArticleEdit" class="back_btn">{{$t('edit_article')}}</MyButton>
+    </div>
     <div class="avatar_wrapper">
       <AvatarApp :mods="{}" :name-class="['']" :size="'200'" :alt="$t('avatar')" :src="data.img"/>
     </div>
@@ -51,7 +54,7 @@ import AvatarApp from '@/shared/ui/Avatar/AvatarApp.vue'
 import { mapState } from 'pinia'
 import { useArticleStore } from '@/entities/Article/model/articleStore/ArticleStore'
 import { useGlobalStore } from '@/store/GlobalStore/GlobalStore'
-import { ArticleStore, CommentStoreORM } from '@/store'
+import { ArticleStore, CommentStoreORM, UserStore } from '@/store'
 import TextApp from '@/shared/ui/textApp/TextApp.vue'
 import IconTemplate from '@/shared/ui/iconComponents/IconTemplate.vue'
 import IconEye from '@/shared/ui/iconComponents/icons/IconEye.vue'
@@ -103,6 +106,9 @@ export default defineComponent({
     },
     blockType () {
       return ArticleBlockType
+    },
+    isEdit () {
+      return ArticleStore.data?.userId === UserStore.user?.id
     }
   },
   methods: {
@@ -114,8 +120,10 @@ export default defineComponent({
     getArticleList () {
       this.$router.push({ path: RoutesPath.Articles })
     },
+    getArticleEdit () {
+      this.$router.push({ path: RoutesPath.ArticleEdit })
+    },
     getArticle (id: string) {
-      console.log(this.miniListArticle.find(el => el.id === id))
       const el = this.miniListArticle.find(el => el.id === id)
       if (el) {
         ArticleStore.setArticle(el)
@@ -152,6 +160,10 @@ export default defineComponent({
 }
 .back_btn {
   display: block;
+}
+.article_details_header {
+  display: flex;
+  justify-content: space-between;
 }
 .recommendation_header {
   font-size: 22px;

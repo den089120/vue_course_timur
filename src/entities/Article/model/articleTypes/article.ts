@@ -44,6 +44,7 @@ export interface Article {
   createdAt: string;
   type: Array<ArticleType>;
   blocks: Array<ArticleBlock>;
+  userId?: string;
 }
 
 export enum ArticleView {

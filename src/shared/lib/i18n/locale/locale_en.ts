@@ -46,5 +46,7 @@ export const en = {
   SCIENCE: 'Science',
   ECONOMICS: 'Economics',
   Type_Article: 'Type article',
-  recommendation_articles: 'Recommendation articles'
+  recommendation_articles: 'Recommendation articles',
+  edit_article: 'Edit article',
+  Create_article: 'Create article'
 }

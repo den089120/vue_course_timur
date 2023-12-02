@@ -1,5 +1,6 @@
 <template>
   <nav :class="$ClassNames('nav_bar', {}, [nameClass])">
+    <MyButton @click="createArticle" :name-class="['clear_inverted']" :mods="{}">{{$t('Create_article')}}</MyButton>
     <MyButton v-if="isAuth" @click="removeUser" :name-class="['clear_inverted']" :mods="{}">{{$t('logOut')}}</MyButton>
     <MyButton v-else @click="openLoginForm" :name-class="['clear_inverted']" :mods="{}">{{$t('logIn')}}</MyButton>
     <LoginModal :login-modal-view="isLoginForm" @close-login="closeLoginForm"/>
@@ -13,6 +14,7 @@ import { LoginModal } from '@/features/authByUsername/'
 import { mapState, mapActions, storeToRefs } from 'pinia'
 import { useUserStore } from '@/entities/User'
 import { LoginFormStore } from '@/store'
+import { RoutesPath } from '@/router/RoutesPath'
 const loginSt = storeToRefs(LoginFormStore)
 export default defineComponent({
   name: 'NavBar',
@@ -35,6 +37,9 @@ export default defineComponent({
     },
     closeLoginForm () {
       LoginFormStore.closeLoginForm()
+    },
+    createArticle () {
+      this.$router.push({ path: RoutesPath.ArticleCreate })
     }
   }
 })
@@ -48,5 +53,6 @@ export default defineComponent({
   align-items: center;
   justify-content: right;
   padding: 0 20px;
+  gap: 15px;
 }
 </style>

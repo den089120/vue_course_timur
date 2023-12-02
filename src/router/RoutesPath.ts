@@ -5,5 +5,7 @@ export const RoutesPath: Record<string, string> = {
   ProfileCommentUser: '/profilecommentuser',
   Articles: '/articles',
   Articles_details: '/details',
+  ArticleCreate: '/create',
+  ArticleEdit: '/edit',
   NotFound: '/:pathMatch(.*)*'
 }
